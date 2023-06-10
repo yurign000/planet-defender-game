@@ -20,9 +20,9 @@ class SpaceShip{
         this.width = width;
         this.sprite = sprite;
     }
-    draw(){
+    async draw(){
         this.ctx.beginPath();
-        this.ctx.drawImage(this.sprite,this.x,this.y,this.width,this.height);
+        this.ctx.drawImage(await this.sprite,this.x,this.y,this.width,this.height);
     }
     move(){
         if(this.movement.left) 

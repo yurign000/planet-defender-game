@@ -1,7 +1,7 @@
 class Player extends SpaceShip{
     isShooting = false;
-    shootArray = [];
-    shootLifeSpan = null;
+    bulletArray = [];
+    bulletLifeSpan = null;
     delayTime = 10;
     delayLoading = 0;
 
@@ -30,28 +30,33 @@ class Player extends SpaceShip{
         let image = new Image();
         image.src = `sprites/player_style_${type}.png`;
 
-        return image;
+        let imageLoaded = new Promise(
+            (resolve) =>
+            image.onload = () => resolve(image)
+        )
+
+        return imageLoaded;
     }
 
-    toShoot(){
+    toShoot(enemy){
         this.delayLoading++;
 
         if(this.isShooting && this.delayLoading >= this.delayTime){
-            this.shootArray.push(new Shoot('standard',this.x+this.width/2,this.y));
+            this.bulletArray.push(new Bullet('standard',this.x+this.width/2,this.y));
             this.delayLoading = 0;
         } 
 
-        if(this.shootArray.length) 
-            this.moveShoots();
+        if(this.bulletArray.length) 
+            this.moveBullets(enemies);
     }
 
-    moveShoots(){
-        for(let s of this.shootArray){
-            s.y += s.speedY;
-            s.x += s.speedX
-            s.draw(this.ctx);
+    moveBullets(enemies){
+        for(let b of this.bulletArray){
+            b.y += b.speedY;
+            b.x += b.speedX
+            b.draw(this.ctx); b.nearObjectDetection(enemies,this.bulletArray,b)
 
-            if(s.y < 0) this.shootArray.splice(s,1)
+            if(b.y < 0) this.bulletArray.splice(b,1)
         }
     }
 

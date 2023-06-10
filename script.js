@@ -22,7 +22,7 @@ function loadPage(){
     // CRIANDO OBJETOS
     design.space = new Sky(canvas,ctx,100);
     player = new Player(canvas,ctx,200,200,25,50,2,20,7);
-    design.menu = new Menu(ctx,player.x);
+    design.menu = new Menu(ctx);
     
     game();         // INICIAR LOOP/FPS
     setKeyEvents(); // DEFINIR EVENTOS DO TECLADO
@@ -36,16 +36,9 @@ function game(){
     loop = requestAnimationFrame(game)
 }
 
-// DESENHAR OBJETOS NA TELA
-function drawObjects(){
-    design.space.draw();
-    design.menu.draw(player.life);
-    drawPlayer();
-    drawEnemies();
-    
-    console.log(enemies.galacticPirates.length)
-}
 
+
+// DEFINIR EVENTOS DE TECLADO
 function setKeyEvents(){
     document.addEventListener(
         'keydown',
@@ -57,32 +50,24 @@ function setKeyEvents(){
     );
 }
 
+// GERAR INIMIGOS ALEATORIAMENTE
 function spawnEnemies(){
     spawnEnemyLoading++;
+
+    // DELAY PARA GERAR INIMIGOS
     if(spawnEnemyLoading >= spawnEnemyTime){
         spawnEnemyLoading = 0;
+
+        // CRIAR NOVO INIMIGO
         enemies.galacticPirates.push(
             new GalacticPirate(
                 canvas,ctx,random(100,canvas.width),0,50,50,2,20
             )
         );
-
     }
 }
+
+// FUNÇÃO PARA GERAR NÚMEROS ALEATÓRIOS
 function random(min,max){
     return Math.round(Math.random()*(max-min)+min);
-}
-
-function drawEnemies(){
-    for(let g of enemies.galacticPirates){ 
-        g.draw(); g.move();
-        if(g.y - g.height >= canvas.height) 
-            enemies.galacticPirates.splice(enemies.galacticPirates[g],1)
-    };
-}
-function drawPlayer(){
-    player.draw(); 
-    player.move(); 
-    player.toShoot(); 
-    player.fixPosition();
 }
