@@ -38,7 +38,7 @@ class Player extends SpaceShip{
         return imageLoaded;
     }
 
-    toShoot(enemy){
+    toShoot(){
         this.delayLoading++;
 
         if(this.isShooting && this.delayLoading >= this.delayTime){
@@ -50,11 +50,12 @@ class Player extends SpaceShip{
             this.moveBullets(enemies);
     }
 
-    moveBullets(enemies){
-        for(let b of this.bulletArray){
+    moveBullets(){
+        for(let i = 0; i < this.bulletArray.length; i++){
+            let b = this.bulletArray[i];
             b.y += b.speedY;
             b.x += b.speedX
-            b.draw(this.ctx); b.nearObjectDetection(enemies,this.bulletArray,b)
+            b.draw(this.ctx); b.nearObjectDetection(this.bulletArray,i)
 
             if(b.y < 0) this.bulletArray.splice(b,1)
         }

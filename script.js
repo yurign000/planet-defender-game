@@ -1,14 +1,14 @@
 var player;
 var enemies = { galacticPirates:[], meteors:[] };
 var design = {};
-var shoot;
+var bulletExplosions = [];
 
-var spawnEnemyTime = 120;
+var spawnEnemyTime = 80;
 var spawnEnemyLoading = 0;
 
 var canvas,ctx;
 var loop;
-
+var planetDamagedTimeout;
 
 // AO CARREGAR A PÁGINA
 function loadPage(){
@@ -36,8 +36,6 @@ function game(){
     loop = requestAnimationFrame(game)
 }
 
-
-
 // DEFINIR EVENTOS DE TECLADO
 function setKeyEvents(){
     document.addEventListener(
@@ -61,7 +59,7 @@ function spawnEnemies(){
         // CRIAR NOVO INIMIGO
         enemies.galacticPirates.push(
             new GalacticPirate(
-                canvas,ctx,random(100,canvas.width),0,50,50,2,20
+                canvas,ctx,random(100,canvas.width),0,50,50,3,20
             )
         );
     }
@@ -70,4 +68,15 @@ function spawnEnemies(){
 // FUNÇÃO PARA GERAR NÚMEROS ALEATÓRIOS
 function random(min,max){
     return Math.round(Math.random()*(max-min)+min);
+}
+
+function planetDamagedAlert(){
+    design.menu.lifeDamagedState();
+
+    if(typeof planetDamagedTimeout === 'number')
+        clearTimeout(planetDamagedTimeout)
+
+    setTimeout(()=>{
+        design.menu.lifeNormalState();
+    },150)
 }

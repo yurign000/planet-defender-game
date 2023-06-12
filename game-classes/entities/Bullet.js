@@ -43,15 +43,16 @@ class Bullet{
         ctx.drawImage(await this.sprite,this.x-this.size/2,this.y,this.size,this.size);
     }
 
-    nearObjectDetection(enemies,bulletArray,b){
+    nearObjectDetection(bulletArray,b){
         if(enemies.galacticPirates.length){
             for(let i = 0; i < enemies.galacticPirates.length; i++){
                 let g = enemies.galacticPirates[i];
-                
+
                 if(this.collision(g)){
-                    enemies.galacticPirates.splice(i,1)
+                    g.life -= 5;
                     bulletArray.splice(b,1)
-                    i--
+                    bulletExplosions.push(new BulletExplosion(this.x,this.y,30,5));
+                    break
                 }
             }
         }
@@ -76,5 +77,8 @@ class Bullet{
                 return true;
         }
         return false;
+    }
+    explosion(){
+
     }
 }

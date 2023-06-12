@@ -8,6 +8,11 @@ class GalacticPirate extends SpaceShip{
         let image = new Image();
         image.src = `sprites/galacticPirate.png`;
 
-        return image;
+        let imageLoaded = new Promise(
+            (resolve) =>
+            image.onload = () => resolve(image)
+        )
+
+        return imageLoaded;
     }
 }
