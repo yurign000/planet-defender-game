@@ -33,7 +33,7 @@ class Bullet{
                 speedX: 0,
                 speedY: -10,
                 damage: 10,
-                size: 10,
+                size: 5,
             }
         }
     }
@@ -64,9 +64,9 @@ class Bullet{
         let bulletX2 = this.x + this.size;
         
         let objY1 = obj.y;
-        let objY2 = obj.y + obj.height;
+        let objY2 = obj.y + obj.size;
         let objX1 = obj.x;
-        let objX2 = obj.x + obj.width;
+        let objX2 = obj.x + obj.size;
 
         if(bulletY1 < objY2){
             if(

@@ -8,7 +8,7 @@ class SpaceShip{
         left:false,
         right:false,
     }
-    constructor(canvas,ctx,x,y,width,height,speed,life,sprite){
+    constructor(canvas,ctx,x,y,size,speed,life,sprite){
         this.canvasWidth = canvas.width
         this.canvasHeight = canvas.height
         this.ctx = ctx;
@@ -16,13 +16,12 @@ class SpaceShip{
         this.y = y;
         this.speed = speed;
         this.life = life;
-        this.height = height;
-        this.width = width;
+        this.size = size;
         this.sprite = sprite;
     }
     async draw(){
         this.ctx.beginPath();
-        this.ctx.drawImage(await this.sprite,this.x,this.y,this.width,this.height);
+        this.ctx.drawImage(await this.sprite,this.x,this.y,this.size,this.size);
     }
     move(){
         if(this.movement.left) 

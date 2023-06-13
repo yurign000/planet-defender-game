@@ -20,8 +20,8 @@ function loadPage(){
     ctx.imageSmoothingEnabled = false;
 
     // CRIANDO OBJETOS
-    design.space = new Sky(canvas,ctx,100);
-    player = new Player(canvas,ctx,200,200,25,50,2,20,7);
+    design.space = new Sky(canvas,ctx);
+    player = new Player(canvas,ctx,200,200,50,2,20,7);
     design.menu = new Menu(ctx);
     
     game();         // INICIAR LOOP/FPS
@@ -59,7 +59,7 @@ function spawnEnemies(){
         // CRIAR NOVO INIMIGO
         enemies.galacticPirates.push(
             new GalacticPirate(
-                canvas,ctx,random(100,canvas.width),0,50,50,3,20
+                canvas,ctx,random(100,canvas.width),0,50,3,20
             )
         );
     }

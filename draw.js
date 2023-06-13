@@ -22,7 +22,7 @@ function drawEnemies(){
         
         g.draw(); g.move();
 
-        if(g.y - g.height >= canvas.height){
+        if(g.y - g.size >= canvas.height){
             enemies.galacticPirates.splice(i,1)
             player.life -= 5;
             i--;

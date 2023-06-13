@@ -22,6 +22,7 @@ class Menu{
         this.ctx.fillRect(5,10,140,75);
         
         this.ctx.font = `${this.fontSize} Arial, Calibri, Times New Roman`
+        this.ctx.fillRect(0,0,200,200)
         
         this.ctx.fillStyle = this.lifeTextColor;
         this.ctx.fillText(`Life: ${life}`,10,40)

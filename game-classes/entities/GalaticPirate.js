@@ -1,6 +1,6 @@
 class GalacticPirate extends SpaceShip{
-    constructor(canvas,ctx,x,y,width,height,speed,life){ 
-        super(canvas,ctx,x,y,width,height,speed,life,GalacticPirate.getSprite());
+    constructor(canvas,ctx,x,y,size,speed,life){ 
+        super(canvas,ctx,x,y,size,speed,life,GalacticPirate.getSprite());
 
         this.movement.down = true;
     }

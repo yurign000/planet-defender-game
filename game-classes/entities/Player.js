@@ -5,9 +5,9 @@ class Player extends SpaceShip{
     delayTime = 10;
     delayLoading = 0;
 
-    constructor(canvas,ctx,x,y,width,height,type,life,speed){
+    constructor(canvas,ctx,x,y,size,type,life,speed){
         const sprite = Player.getSprite(type);
-        super(canvas,ctx,x,y,width,height,speed,life,sprite);
+        super(canvas,ctx,x,y,size,speed,life,sprite);
     }
     
     keyDown(key){
@@ -42,7 +42,7 @@ class Player extends SpaceShip{
         this.delayLoading++;
 
         if(this.isShooting && this.delayLoading >= this.delayTime){
-            this.bulletArray.push(new Bullet('standard',this.x+this.width/2,this.y));
+            this.bulletArray.push(new Bullet('standard',this.x+this.size/2,this.y));
             this.delayLoading = 0;
         } 
 
@@ -64,12 +64,12 @@ class Player extends SpaceShip{
     fixPosition(){
         if(this.x < 0) this.x = 0;
 
-        else if(this.x + this.width > this.canvasWidth) 
-            this.x = this.canvasWidth - this.width 
+        else if(this.x + this.size > this.canvasWidth) 
+            this.x = this.canvasWidth - this.size 
 
         if(this.y < 0) this.y = 0;
 
-        else if(this.y + this.height > this.canvasHeight)
-            this.y = this.canvasHeight - this.height;           
+        else if(this.y + this.size > this.canvasHeight)
+            this.y = this.canvasHeight - this.size;           
     }
 }
